@@ -40,7 +40,12 @@
         {{ end }}
     </div>
 
-    
+<script type="text/javascript">
+$(window).on('load', function(){
+    $("#circle").fadeOut(500);
+    $("#circle1").fadeOut(700);
+});
+</script>
 
     <div class="nav-footer">
         {{partial "copyright.html" .}}

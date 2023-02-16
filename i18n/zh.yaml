@@ -1,9 +1,9 @@
 - id: last_mod_on
-  translation: 最后修改于 {{ .Format "2006-01-02" }}
+  translation: 最后修改于 {{ .Format "Mon, 02 Jan 2006" }}
 - id: format_date
-  translation: '{{ .Format "2006-01-02" }}'
+  translation: '{{ .Format "Mon, 02 Jan 2006" }}'
 - id: format_date_tosec
-  translation: '{{ .Format "2006-01-02 15:04" }}'
+  translation: '{{ .Format "Mon, 02 Jan 2006 15:04:05 MST" }}'
 - id: next_link
   translation: '下回'
 - id: prev_link
