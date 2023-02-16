@@ -19,9 +19,13 @@ Moments piled up.
 A Hugo theme ported from [SumiMakito/hexo-theme-Journal](https://github.com/SumiMakito/hexo-theme-Journal/).
 
 # 魔改内容：
+
 1.增加加载时左下角炫酷圈圈
+
 2.代码高亮改为使用highlight.js
+
 3.代码字体更改为JetBrains Mono
+
 4.更新twikoo版本
 
 ## Features
