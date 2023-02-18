@@ -55,13 +55,13 @@
     {{ if and (not (.Params.disableToC) ) (.IsPage) }}
       <script src="{{"js/toc.js" | relURL}}"></script>
     {{ end }}
-    <link type="text/css" rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link crossorigin="anonymous" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" href="https://lib.baomitu.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 {{- else -}}
     {{- /* with leading slash */ -}}
     {{ if and (not (.Params.disableToC) ) (.IsPage) }}
       <script src="{{"/js/toc.js" | relURL}}"></script>
     {{ end }}
-    <link type="text/css" rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link crossorigin="anonymous" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" href="https://lib.baomitu.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 {{- end -}}
 
 {{ $styles := resources.Get "scss/journal.scss" | toCSS | minify | fingerprint }}
@@ -73,9 +73,7 @@
 {{ end }}
 
 <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Material+Icons">
-<link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=JetBrains+Mono">
+          href="https://fonts.googleapis.com/css?family=Material+Icons|JetBrains+Mono">
 
 {{ if .Site.Params.cloudflareToken }}
 <!-- Cloudflare Web Analytics -->
@@ -85,11 +83,15 @@
 </script>
 <!-- End Cloudflare Web Analytics -->
 {{ end }}
-
-<script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.js"></script>
-<link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/github-dark.min.css" rel="stylesheet">
-<script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/highlight.min.js"></script>
-<script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/languages/gcode.min.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script crossorigin="anonymous" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" src="https://lib.baomitu.com/jquery/3.6.3/jquery.min.js"></script>
+<link crossorigin="anonymous" integrity="sha512-rO+olRTkcf304DQBxSWxln8JXCzTHlKnIdnMUwYvQa9/Jd4cQaNkItIUj6Z4nvW1dqK0SKXLbn9h4KwZTNtAyw==" href="https://lib.baomitu.com/highlight.js/11.4.0/styles/github-dark.min.css" rel="stylesheet">
+<script crossorigin="anonymous" integrity="sha512-IaaKO80nPNs5j+VLxd42eK/7sYuXQmr+fyywCNA0e+C6gtQnuCXNtORe9xR4LqGPz5U9VpH+ff41wKs/ZmC3iA==" src="https://lib.baomitu.com/highlight.js/11.4.0/highlight.min.js"></script>
+<script crossorigin="anonymous" integrity="sha512-4QYHD9PAHudNw8hYXd79O8t7BrFe2kl19eYIPAwdCxiJ7bYxERRpvS2VbFixd+kfLqVzUH9m1LBnmZlUf3VuAA==" src="https://lib.baomitu.com/highlight.js/11.4.0/languages/dos.min.js"></script>
+<script crossorigin="anonymous" integrity="sha512-BIiAVlWdHwCcZSixwJwhoUJSVGaNtPXCDzcyR5AVlyzXS9FDies/go5012bSdZr15eCTZG4G42GqMSkIhKpSoQ==" src="https://lib.baomitu.com/highlight.js/11.4.0/languages/gcode.min.js"></script>
+<script crossorigin="anonymous" integrity="sha512-fW5sv8U2NS6UkzksCHx7esGPyD2yXShY32IXtNjx4uYUrC3ECzNb/kv9PBLSCtoJR2QqJn5Xm70xNpTnqjH+vQ==" src="https://lib.baomitu.com/highlight.js/11.4.0/languages/dns.min.js"></script>
+<script crossorigin="anonymous" integrity="sha512-lQTPpM0rbEDVVTKV2iCSVajWc/cv+C9MIKKw0giu8oOZgFOZv7btmPqAs3xv5DYGjgwixtd0tZoek/dZ7yALYg==" src="https://lib.baomitu.com/highlight.js/11.4.0/languages/matlab.min.js"></script>
+<script crossorigin="anonymous" integrity="sha512-q72t7WfHJ0uSdUJE+1lZHBdOAArqpBwYV1PsbsaQ8a9Hr1U+8jvdNDs5jEaqzbF35RtaGIaj8DqU32oWfytDmQ==" src="https://lib.baomitu.com/highlight.js/11.4.0/languages/nginx.min.js"></script>
 <script>hljs.highlightAll();</script>
 
 {{ if or (.Params.enableLaTeX) (.Site.Params.enableLaTeX) }}
@@ -152,7 +154,7 @@
 {{ end }}
 
 {{ if and (.Site.Params.enableTwikoo) (.IsPage) }}
-<script src="https://cdn.staticfile.org/twikoo/1.6.9/twikoo.all.min.js"></script>
+<script crossorigin="anonymous" integrity="sha512-61pS6Kv2JW/LS8JX4KC1k7DZ9nAmt9oOYg5BeoFnkKf2xaOiTzbiaUO8XMmBlbNANcNYssiaTRMO7V042mB+zw==" src="https://lib.baomitu.com/twikoo/1.6.10/twikoo.all.min.js"></script>
 {{ end }}
 
 {{ if and (.Site.Params.walineServer) (.IsPage) }}
