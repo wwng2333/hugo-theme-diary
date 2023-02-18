@@ -28,6 +28,7 @@ A Hugo theme ported from [SumiMakito/hexo-theme-Journal](https://github.com/Sumi
 
 4.更新twikoo版本
 
+5.静态资源使用 cdn.baomitu.com 托管
 ## Features
 
 ### Features of this theme
