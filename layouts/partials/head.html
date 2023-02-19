@@ -1,171 +1,193 @@
 <head>
-<title>{{.Title}}</title>
+  <title>{{.Title}}</title>
 
-{{ $description := .Params.description}}
-{{if .IsHome}}
+  {{ $description := .Params.description}}
+  {{if .IsHome}}
   {{ $description = .Site.Params.description}}
-{{end}}
+  {{end}}
 
-<meta charset="utf-8">
-<meta name="X-UA-Compatible" content="IE=edge">
-<meta name="google-site-verification" content="{{ .Site.Params.googleSiteVerification }}">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-<meta content="telephone=no" name="format-detection">
-<meta name="description" content="{{ $description }}">
-<meta name="renderer" content="webkit">
-<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="X-UA-Compatible" content="IE=edge">
+  <meta name="google-site-verification" content="{{ .Site.Params.googleSiteVerification }}">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta content="telephone=no" name="format-detection">
+  <meta name="description" content="{{ $description }}">
+  <meta name="renderer" content="webkit">
+  <meta name="theme-color" content="#ffffff">
 
-<!-- open-graph -->
-{{if .Site.Params.enableOpenGraph}}
-{{ template "_internal/opengraph.html" . }}
-{{end}}
+  <!-- open-graph -->
+  {{if .Site.Params.enableOpenGraph}}
+  {{ template "_internal/opengraph.html" . }}
+  {{end}}
 
-<!-- twitter-cards -->
-{{if .Site.Params.enableTwitterCards}}
-{{ template "_internal/twitter_cards.html" . }}
-{{end}}
+  <!-- twitter-cards -->
+  {{if .Site.Params.enableTwitterCards}}
+  {{ template "_internal/twitter_cards.html" . }}
+  {{end}}
 
-<!-- metadata -->
+  <!-- metadata -->
 
-{{ if .Site.GoogleAnalytics }}
-{{ template "_internal/google_analytics.html" . }}
-{{ end }}
+  {{ if .Site.GoogleAnalytics }}
+  {{ template "_internal/google_analytics.html" . }}
+  {{ end }}
 
 
 
-{{if .Site.Params.manifest}}
-<link rel="manifest" href="{{.Site.Params.manifest}}">
-{{end}}
-  
-{{if .Params.canonicalUrl}}
-<link rel="canonical" href="{{.Params.canonicalUrl}}" />
-{{end}}
+  {{if .Site.Params.manifest}}
+  <link rel="manifest" href="{{.Site.Params.manifest}}">
+  {{end}}
 
-<!-- favicon -->
-{{ if .Site.Params.favicon }}
-<link rel="icon" href="{{ .Site.Params.favicon | absURL }}">
-{{ end }}
+  {{if .Params.canonicalUrl}}
+  <link rel="canonical" href="{{.Params.canonicalUrl}}" />
+  {{end}}
 
-<div id="circle"></div> <div id="circle1" ></div>
-	
-<!-- For compatibility. View https://github.com/AmazingRise/hugo-theme-diary/pull/135 for details.-->
-{{- $hugoVersion := split (replaceRE ".*([0-9]+)\\.([0-9]+)\\.([0-9]+).*" "$1 $2 $3" hugo.Version) " " -}}
-{{- if and (eq (int (index $hugoVersion 0)) 0) (ge (int (index $hugoVersion 1)) 101) -}}
-    {{- /* no leading slash */ -}}
-    {{ if and (not (.Params.disableToC) ) (.IsPage) }}
-      <script src="{{"js/toc.js" | relURL}}"></script>
-    {{ end }}
-    <link crossorigin="anonymous" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" href="https://lib.baomitu.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-{{- else -}}
-    {{- /* with leading slash */ -}}
-    {{ if and (not (.Params.disableToC) ) (.IsPage) }}
-      <script src="{{"/js/toc.js" | relURL}}"></script>
-    {{ end }}
-    <link crossorigin="anonymous" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" href="https://lib.baomitu.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-{{- end -}}
+  <!-- favicon -->
+  {{ if .Site.Params.favicon }}
+  <link rel="icon" href="{{ .Site.Params.favicon | absURL }}">
+  {{ end }}
 
-{{ $styles := resources.Get "scss/journal.scss" | toCSS | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
+  <div id="circle"></div>
+  <div id="circle1"></div>
 
-{{ if not .Site.Params.disableDarkmode }}
-{{ $darkmode := resources.Get "scss/dark-mode.scss" | toCSS | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $darkmode.RelPermalink }}" integrity="{{ $darkmode.Data.Integrity }}" media="screen">
-{{ end }}
+  <!-- For compatibility. View https://github.com/AmazingRise/hugo-theme-diary/pull/135 for details.-->
+  {{- $hugoVersion := split (replaceRE ".*([0-9]+)\\.([0-9]+)\\.([0-9]+).*" "$1 $2 $3" hugo.Version) " " -}}
+  {{- if and (eq (int (index $hugoVersion 0)) 0) (ge (int (index $hugoVersion 1)) 101) -}}
+  {{- /* no leading slash */ -}}
+  {{ if and (not (.Params.disableToC) ) (.IsPage) }}
+  <script src="{{ "/js/toc.js" | relURL}}"></script>
+  {{ end }}
+  <link crossorigin="anonymous" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    href="https://lib.baomitu.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  {{- else -}}
+  {{- /* with leading slash */ -}}
+  {{ if and (not (.Params.disableToC) ) (.IsPage) }}
+  <script src="{{ "/js/toc.js" | relURL}}"></script>
+  {{ end }}
+  <link crossorigin="anonymous" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    href="https://lib.baomitu.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  {{- end -}}
 
-<link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Material+Icons|JetBrains+Mono">
+  {{ $styles := resources.Get "scss/journal.scss" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
 
-{{ if .Site.Params.cloudflareToken }}
-<!-- Cloudflare Web Analytics -->
-<script defer
-	src='https://static.cloudflareinsights.com/beacon.min.js'
-	data-cf-beacon='{"token": {{ .Site.Params.cloudflareToken }}'>
-</script>
-<!-- End Cloudflare Web Analytics -->
-{{ end }}
-<script defer src="/_vercel/insights/script.js"></script>
-<script crossorigin="anonymous" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" src="https://lib.baomitu.com/jquery/3.6.3/jquery.min.js"></script>
-<link crossorigin="anonymous" integrity="sha512-rO+olRTkcf304DQBxSWxln8JXCzTHlKnIdnMUwYvQa9/Jd4cQaNkItIUj6Z4nvW1dqK0SKXLbn9h4KwZTNtAyw==" href="https://lib.baomitu.com/highlight.js/11.4.0/styles/github-dark.min.css" rel="stylesheet">
-<script crossorigin="anonymous" integrity="sha512-IaaKO80nPNs5j+VLxd42eK/7sYuXQmr+fyywCNA0e+C6gtQnuCXNtORe9xR4LqGPz5U9VpH+ff41wKs/ZmC3iA==" src="https://lib.baomitu.com/highlight.js/11.4.0/highlight.min.js"></script>
-<script crossorigin="anonymous" integrity="sha512-4QYHD9PAHudNw8hYXd79O8t7BrFe2kl19eYIPAwdCxiJ7bYxERRpvS2VbFixd+kfLqVzUH9m1LBnmZlUf3VuAA==" src="https://lib.baomitu.com/highlight.js/11.4.0/languages/dos.min.js"></script>
-<script crossorigin="anonymous" integrity="sha512-BIiAVlWdHwCcZSixwJwhoUJSVGaNtPXCDzcyR5AVlyzXS9FDies/go5012bSdZr15eCTZG4G42GqMSkIhKpSoQ==" src="https://lib.baomitu.com/highlight.js/11.4.0/languages/gcode.min.js"></script>
-<script crossorigin="anonymous" integrity="sha512-fW5sv8U2NS6UkzksCHx7esGPyD2yXShY32IXtNjx4uYUrC3ECzNb/kv9PBLSCtoJR2QqJn5Xm70xNpTnqjH+vQ==" src="https://lib.baomitu.com/highlight.js/11.4.0/languages/dns.min.js"></script>
-<script crossorigin="anonymous" integrity="sha512-lQTPpM0rbEDVVTKV2iCSVajWc/cv+C9MIKKw0giu8oOZgFOZv7btmPqAs3xv5DYGjgwixtd0tZoek/dZ7yALYg==" src="https://lib.baomitu.com/highlight.js/11.4.0/languages/matlab.min.js"></script>
-<script crossorigin="anonymous" integrity="sha512-q72t7WfHJ0uSdUJE+1lZHBdOAArqpBwYV1PsbsaQ8a9Hr1U+8jvdNDs5jEaqzbF35RtaGIaj8DqU32oWfytDmQ==" src="https://lib.baomitu.com/highlight.js/11.4.0/languages/nginx.min.js"></script>
-<script>hljs.highlightAll();</script>
+  {{ if not .Site.Params.disableDarkmode }}
+  {{ $darkmode := resources.Get "scss/dark-mode.scss" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $darkmode.RelPermalink }}" integrity="{{ $darkmode.Data.Integrity }}" media="screen">
+  {{ end }}
 
-{{ if or (.Params.enableLaTeX) (.Site.Params.enableLaTeX) }}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        renderMathInElement(document.body, {
-          // customised options
-          // • auto-render specific keys, e.g.:
-          delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\\(', right: '\\)', display: false},
-              {left: '\\[', right: '\\]', display: true}
-          ],
-          // • rendering keys, e.g.:
-          throwOnError : false
-        });
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|JetBrains+Mono">
+
+  {{ if .Site.Params.cloudflareToken }}
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+    data-cf-beacon='{"token": {{ .Site.Params.cloudflareToken }}'>
+    </script>
+  <!-- End Cloudflare Web Analytics -->
+  {{ end }}
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script async crossorigin="anonymous"
+    integrity="sha512-G2PbtRp8Sjlvy8e+LxaLxtcpLfMtZTCgnpyHwc17gbFoMrhxdcFmUmuAmv9KWNTVaYOqXq6pPqCebgxcMYnCEw=="
+    src="https://lib.baomitu.com/busuanzi/2.3.0/bsz.pure.mini.min.js"></script>
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <script crossorigin="anonymous"
+    integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+    src="https://lib.baomitu.com/jquery/3.6.3/jquery.min.js"></script>
+  {{ if not .IsHome }}
+  <script crossorigin="anonymous"
+    integrity="sha512-IaaKO80nPNs5j+VLxd42eK/7sYuXQmr+fyywCNA0e+C6gtQnuCXNtORe9xR4LqGPz5U9VpH+ff41wKs/ZmC3iA=="
+    src="https://lib.baomitu.com/highlight.js/11.4.0/highlight.min.js"></script>
+  <script crossorigin="anonymous"
+    integrity="sha512-4QYHD9PAHudNw8hYXd79O8t7BrFe2kl19eYIPAwdCxiJ7bYxERRpvS2VbFixd+kfLqVzUH9m1LBnmZlUf3VuAA=="
+    src="https://lib.baomitu.com/highlight.js/11.4.0/languages/dos.min.js"></script>
+  <script crossorigin="anonymous"
+    integrity="sha512-BIiAVlWdHwCcZSixwJwhoUJSVGaNtPXCDzcyR5AVlyzXS9FDies/go5012bSdZr15eCTZG4G42GqMSkIhKpSoQ=="
+    src="https://lib.baomitu.com/highlight.js/11.4.0/languages/gcode.min.js"></script>
+  <script crossorigin="anonymous"
+    integrity="sha512-35OFVBQE1sJPBO6piw4smfzTVyJlJ9T+tej3iLY5N/CUnCmgizn7ZgnJjYL0SlnLEeg3RppbjPos1B7DMtMuJQ=="
+    src="https://lib.baomitu.com/highlight.js/11.7.0/languages/x86asm.min.js"></script>
+  <script crossorigin="anonymous"
+    integrity="sha512-fW5sv8U2NS6UkzksCHx7esGPyD2yXShY32IXtNjx4uYUrC3ECzNb/kv9PBLSCtoJR2QqJn5Xm70xNpTnqjH+vQ=="
+    src="https://lib.baomitu.com/highlight.js/11.4.0/languages/dns.min.js"></script>
+  {{ end }}
+  <script>hljs.highlightAll();</script>
+
+  {{ if or (.Params.enableLaTeX) (.Site.Params.enableLaTeX) }}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"
+    integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"
+    integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"
+    crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"
+    integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"
+    crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        // customised options
+        // • auto-render specific keys, e.g.:
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false },
+          { left: '\\[', right: '\\]', display: true }
+        ],
+        // • rendering keys, e.g.:
+        throwOnError: false
+      });
     });
-</script>
-{{ end }}
+  </script>
+  {{ end }}
 
-{{ if and ( and ( .Site.Params.enableGitalk ) ( .IsPage ) ) ( or ( not ( isset .Params "comment" ) ) ( eq .Params.comment true ) ) }}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<!-- For compatibility. View https://github.com/AmazingRise/hugo-theme-diary/pull/135 for details.-->
-{{- $hugoVersion := split (replaceRE ".*([0-9]+)\\.([0-9]+)\\.([0-9]+).*" "$1 $2 $3" hugo.Version) " " -}}
-{{- if and (eq (int (index $hugoVersion 0)) 0) (ge (int (index $hugoVersion 1)) 101) -}}
-    {{- /* no leading slash */ -}}
-    <script src="{{"vendor/js/md5.min.js" | relURL}}"></script>
-{{- else -}}
-    {{- /* with leading slash */ -}}
-    <script src="{{"/vendor/js/md5.min.js" | relURL}}"></script>
-{{- end -}}
-<script>
-  var gitalk = new Gitalk({
-  clientID: '{{ .Site.Params.Gitalk.client_id }}',
-  clientSecret: '{{ .Site.Params.Gitalk.client_secret }}',
-  repo: '{{ .Site.Params.Gitalk.repo }}',
-  owner: '{{ .Site.Params.Gitalk.owner }}',
-  admin: ['{{ .Site.Params.Gitalk.owner }}'],
-  id: md5(location.pathname),
-  distractionFreeMode: 'false'
-  });
-  window.onload = function () {
-        gitalk.render('gitalk-container')
-  }
-</script>
-{{ end }}
+  {{ if and ( and ( .Site.Params.enableGitalk ) ( .IsPage ) ) ( or ( not ( isset .Params "comment" ) ) ( eq
+  .Params.comment true ) ) }}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <!-- For compatibility. View https://github.com/AmazingRise/hugo-theme-diary/pull/135 for details.-->
+  {{- $hugoVersion := split (replaceRE ".*([0-9]+)\\.([0-9]+)\\.([0-9]+).*" "$1 $2 $3" hugo.Version) " " -}}
+  {{- if and (eq (int (index $hugoVersion 0)) 0) (ge (int (index $hugoVersion 1)) 101) -}}
+  {{- /* no leading slash */ -}}
+  <script src="{{" vendor/js/md5.min.js" | relURL}}"></script>
+  {{- else -}}
+  {{- /* with leading slash */ -}}
+  <script src="{{" /vendor/js/md5.min.js" | relURL}}"></script>
+  {{- end -}}
+  <script>
+    var gitalk = new Gitalk({
+      clientID: '{{ .Site.Params.Gitalk.client_id }}',
+      clientSecret: '{{ .Site.Params.Gitalk.client_secret }}',
+      repo: '{{ .Site.Params.Gitalk.repo }}',
+      owner: '{{ .Site.Params.Gitalk.owner }}',
+      admin: ['{{ .Site.Params.Gitalk.owner }}'],
+      id: md5(location.pathname),
+      distractionFreeMode: 'false'
+    });
+    window.onload = function () {
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  {{ end }}
 
-{{ if and (.Site.Params.livereId) (.IsPage) }}
-<script type="text/javascript">
-</script>
-{{ end }}
+  {{ if and (.Site.Params.livereId) (.IsPage) }}
+  <script type="text/javascript">
+  </script>
+  {{ end }}
 
-{{ if and (.Site.Params.disqusShortname) (.IsPage) }}
-<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
-{{ end }}
+  {{ if and (.Site.Params.disqusShortname) (.IsPage) }}
+  <script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+  {{ end }}
 
-{{ if and (.Site.Params.enableTwikoo) (.IsPage) }}
-<script crossorigin="anonymous" integrity="sha512-61pS6Kv2JW/LS8JX4KC1k7DZ9nAmt9oOYg5BeoFnkKf2xaOiTzbiaUO8XMmBlbNANcNYssiaTRMO7V042mB+zw==" src="https://lib.baomitu.com/twikoo/1.6.10/twikoo.all.min.js"></script>
-{{ end }}
+  {{ if and (.Site.Params.enableTwikoo) (.IsPage) }}
+  <script crossorigin="anonymous"
+    integrity="sha512-61pS6Kv2JW/LS8JX4KC1k7DZ9nAmt9oOYg5BeoFnkKf2xaOiTzbiaUO8XMmBlbNANcNYssiaTRMO7V042mB+zw=="
+    src="https://lib.baomitu.com/twikoo/1.6.10/twikoo.all.min.js"></script>
+  {{ end }}
 
-{{ if and (.Site.Params.walineServer) (.IsPage) }}
-<script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/@waline/client@v2/dist/waline.css"
-  />
-{{ end }}
+  {{ if and (.Site.Params.walineServer) (.IsPage) }}
+  <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css" />
+  {{ end }}
 
-<!-- head custom -->
-{{- partial "extended_head.html" . }}
+  <!-- head custom -->
+  {{- partial "extended_head.html" . }}
 
 </head>
